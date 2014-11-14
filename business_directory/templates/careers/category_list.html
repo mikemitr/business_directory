@@ -1,0 +1,31 @@
+{% extends CMS_TEMPLATE %}
+{% load static %}{% load i18n %}
+
+{% block title %}Careers{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Categories</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="list-group">
+          {% for category in category_list %}
+            <a href="{% url "category" category.slug %}" class="list-group-item">
+              <h4 class="list-group-item-heading">{{ category.title }}</h4>
+            </a>
+          {% endfor %}
+        
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock content %}

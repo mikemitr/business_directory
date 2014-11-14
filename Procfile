@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath="$PWD/business_directory" wsgi:application
