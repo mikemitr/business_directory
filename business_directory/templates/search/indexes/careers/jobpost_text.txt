@@ -1,2 +1,5 @@
 {{ object.title }}
 {{ object.description }}
+{{ object.budget_from }}
+{{ object.budget_to }}
+{{ object.type }}

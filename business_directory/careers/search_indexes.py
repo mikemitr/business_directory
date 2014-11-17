@@ -6,8 +6,9 @@ from .models import JobPost
 class JobPostIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     budget_from = indexes.IntegerField(model_attr='budget_from')
-    category = indexes.CharField(model_attr='category')
+    category = indexes.CharField(model_attr='category', faceted=True)
     company = indexes.CharField(model_attr='company')
+    type = indexes.CharField(model_attr='type', faceted=True)
 
     def get_model(self):
         return JobPost

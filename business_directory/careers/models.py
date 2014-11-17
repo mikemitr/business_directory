@@ -32,6 +32,12 @@ class JobPost(models.Model):
         (2, _('Open'))
     )
     status = models.IntegerField(choices=JOB_STATUS_CHOICES, default=0)
+    JOB_TYPES = (
+        ('pt', _('Part Time')),
+        ('ft', _('Full Time')),
+        ('ct', _('Contract'))
+    )
+    type = models.CharField(max_length=2, choices=JOB_TYPES)
     category = models.ForeignKey(Category)
 
     class Meta:

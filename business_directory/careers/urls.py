@@ -1,5 +1,10 @@
 from django.conf.urls import patterns, url, include
 from careers import views
+from haystack.forms import FacetedSearchForm
+from haystack.query import SearchQuerySet
+from haystack.views import FacetedSearchView
+
+sqs = SearchQuerySet().facet('type').facet('category')
 
 urlpatterns = patterns('',
     # URL pattern for the CategoryListView
@@ -34,6 +39,7 @@ urlpatterns = patterns('',
         name='add_jobpost'
     ),
 
-    url(r'^search/', include('haystack.urls')),
+    url(r'^$', FacetedSearchView(form_class=FacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
+    # url(r'', include('haystack.urls')),
 
 )

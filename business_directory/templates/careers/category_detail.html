@@ -16,7 +16,12 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="list-group">
-
+          {% for jobpost in jobpost_list %}
+            <a href="{% url "post" jobpost.pk %}" class="list-group-item">
+              <h4 class="list-group-item-heading">{{ jobpost.title }}</h4>
+              {{ jobpost.created_on }}
+            </a>
+          {% endfor %}
       </div>
     </div>
   </div>
