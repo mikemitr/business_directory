@@ -1,23 +1,21 @@
 {% with obj=result.object %}
-    <div class="accordion-group">
-        <div class="accordion-heading"><a class="accordion-toggle" href="#collapse_{{ obj.id }}" data-toggle="collapse"
-                                          data-parent="#accordion2">
-            {{ obj.name }}
+<div class="row">
+    <div class="list-group">
+        <div>
+        <a class="list-group-item" href="{% url "post" obj.pk %}" >
+            <h5 class="list-group-item-heading">{{ obj.title }}</h5>
         </a>
-
-            <div style="padding: 8px 15px;">
-                Company: {{ obj.company }}
-
-                Type: {{ obj.type }}
-
-                Location: {{ obj.location }}</div>
+        <div style="padding: 8px 15px;">
+            <p> Company: {{ obj.company }} </p>
+            <p> Type: {{ obj.type }} </p>
+            <p> Location: {{ obj.location }} </p>
+            <p> Budget: {{ obj.budget_from }} - {{ obj.budget_to }} $</p>
+        </div>
         </div>
         <div id="collapse_{{ obj.id }}" class="accordion-body collapse in">
-            <div class="accordion-inner">
-                {#Contact: <a href="mailto:{{ obj.get_contact_email }}">{{ obj.get_contact_email }}</a>#}
-
-                {{ obj.description }}</div>
+        <div>
+            {{ obj.description }}</div>
         </div>
     </div>
-
+</div>
 {% endwith %}

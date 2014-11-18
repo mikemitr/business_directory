@@ -5,7 +5,7 @@
 
 {% block content %}
     <div class="container">
-        <div class="span12">
+        <div class="row">
             <h1>Search</h1>
 
             <form method="get" action="." class=".form-search">
@@ -33,7 +33,7 @@
                 {% endif %}
                 {% if facets.fields.category %}
                     <div>
-                        <h4>Location</h4>
+                        <h4>Category</h4>
                         <ul>
                             {% for category in facets.fields.category %}
                                 <li>
