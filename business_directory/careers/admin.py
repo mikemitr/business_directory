@@ -1,6 +1,6 @@
 from cms.admin.placeholderadmin import FrontendEditableAdminMixin
 from django.contrib import admin
-from .forms import CategoryForm, JobPostForm
+from .forms import CategoryForm, JobPostAdminForm
 from .models import JobPost, Category
 
 
@@ -9,9 +9,15 @@ class CategoryAdmin(FrontendEditableAdminMixin, admin.ModelAdmin):
     list_display = ('title', 'slug')
 
 
+def make_approved(modeladmin, request, queryset):
+    queryset.update(approved=True)
+make_approved.short_description = "Mark selected posts as approved"
+
+
 class JobPostAdmin(admin.ModelAdmin):
-    form = JobPostForm
-    list_display = ('title', 'created_on', 'company', 'status')
+    form = JobPostAdminForm
+    list_display = ('title', 'created_on', 'company', 'status', 'approved')
+    actions = [make_approved]
 
 
 admin.site.register(Category, CategoryAdmin)

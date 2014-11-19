@@ -41,5 +41,22 @@ urlpatterns = patterns('',
 
     url(r'^$', FacetedSearchView(form_class=FacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
     # url(r'', include('haystack.urls')),
+    url(
+        regex=r'^applicants/$',
+        view=views.JobPostAppliedListView.as_view(),
+        name='applicants'
+    ),
+    url(
+        regex=r'^applicant/(?P<pk>[\w.@+-]+)/$',
+        view=views.JobPostAppliedDetailView.as_view(),
+        name='applicant'
+    ),
+    # url(
+    #     regex=r'^apply/(?P<pk>[\w.@+-]+)/$',
+    #     view=views.JobPostAppliedDetailView.as_view(),
+    #     name='apply'
+    # ),
+
+    url(r'^messages/', include('django_messages.urls')),
 
 )

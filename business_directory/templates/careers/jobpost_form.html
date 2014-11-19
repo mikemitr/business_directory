@@ -3,8 +3,12 @@
 
 {% block title %}Careers{% endblock %}
 {% block content %}
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create" />
-</form>
+<div class="container">
+    <div class="row">
+        <form action="" method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Create" />
+        </form>
+    </div>
+</div>
 {% endblock content %}

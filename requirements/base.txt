@@ -56,5 +56,6 @@ cmsplugin-filer==0.9.5
 django-reversion==1.7
 django-authtools
 pysolr
+django-messages
 
 #s-e git://github.com/Fantomas42/django-blog-zinnia.git@feature/django-1.7#egg=django-blog-zinnia

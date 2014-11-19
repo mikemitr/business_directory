@@ -1,0 +1,42 @@
+{% extends CMS_TEMPLATE %}
+{% load static %}{% load i18n %}
+
+{% block title %}Applicant{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Applicant {{ employee.first_name }} {{ employee.last_name }}</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="list-group">
+                    Contact info: {{ jobpostapplied.applicant.email }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="list-group">
+                    <p>
+                        Job post: {{ jobpostapplied.jobpost.title }}
+                    </p>
+                    <p>
+                        Date applied: {{ jobpostapplied.date }}
+                    </p>
+                    <p>
+                        Message: {{ jobpostapplied.message.body }}
+                    </p>
+                    <p>
+                        Resume: <a href="/media/resumes/{{ jobpostapplied.resume }}">{{ jobpostapplied.resume }} </a>
+                    </p>
+                    <a href="{% url "messages_compose" %}"> Reply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

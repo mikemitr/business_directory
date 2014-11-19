@@ -66,7 +66,7 @@ class CustomSignupForm(forms.Form):
             permission = Permission.objects.get(codename='add_jobpost')
             user.user_permissions.add(permission)
         else:
-            profile = EmployeeProfile
+            profile = EmployeeProfile()
             profile.first_name = self.cleaned_data["first_name"]
             profile.last_name = self.cleaned_data["last_name"]
 

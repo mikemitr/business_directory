@@ -2,8 +2,12 @@ from profiles.models import CompanyProfile
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from cms.models import CMSPlugin
-
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 import datetime
+
+
+fs = FileSystemStorage(location=settings.RESUME_ROOT)
 
 
 class Category(models.Model):
@@ -39,6 +43,7 @@ class JobPost(models.Model):
     )
     type = models.CharField(max_length=2, choices=JOB_TYPES)
     category = models.ForeignKey(Category)
+    approved = models.BooleanField(verbose_name=_('Approved by admin'), default=False)
 
     class Meta:
         ordering = ('-created_on', )
@@ -50,4 +55,12 @@ class JobPostPlugin(CMSPlugin):
     jobpost = models.ForeignKey('careers.JobPost', related_name='plugins')
 
     def __unicode__(self):
-      return self.jobpost.title
+        return self.jobpost.title
+
+
+class JobPostApplied(models.Model):
+    jobpost = models.ForeignKey(JobPost)
+    applicant = models.ForeignKey('users.User')
+    date = models.DateTimeField(_('Applied'), editable=False, auto_now_add=True)
+    resume = models.FileField(storage=fs, verbose_name=_('Upload resume'))
+    message = models.ForeignKey('django_messages.Message')

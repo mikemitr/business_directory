@@ -53,6 +53,8 @@ class Common(Configuration):
         'djangocms_admin_style',  # for the admin skin. You **must** add 'djangocms_admin_style' in the list **before** 'django.contrib.admin'.
 
         'haystack',
+        'django_messages',
+        'admin_notifications',
     )
 
     # Apps specific for this project go here.
@@ -178,6 +180,7 @@ class Common(Configuration):
         # Your stuff: custom template context processers go here
         'sekizai.context_processors.sekizai',
         'cms.context_processors.cms_settings',
+        'django_messages.context_processors.inbox',
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
@@ -219,6 +222,7 @@ class Common(Configuration):
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
     MEDIA_URL = '/media/'
+    RESUME_ROOT = join(MEDIA_ROOT, 'resumes')
     # END MEDIA CONFIGURATION
 
     # URL Configuration

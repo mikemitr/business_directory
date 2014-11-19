@@ -1,0 +1,51 @@
+{% extends CMS_TEMPLATE %}
+{% load static %}{% load i18n %}
+
+{% block title %}Applicants{% endblock %}
+{% block content %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Applicants</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="list-group">
+                    {% for jobpostapplied in jobpostapplied_list %}
+                        <a href="{% url "applicant" jobpostapplied.pk %}" class="list-group-item">
+                            <h4 class="list-group-item-heading">
+                                {{ jobpostapplied.applicant }}
+                            </h4>
+                            Date applied: {{ jobpostapplied.date }}
+                        </a>
+                    {% endfor %}
+
+                </div>
+                {% if is_paginated %}
+                    <nav>
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li><a href="{% url 'applicants' %}?page={{ page_obj.previous_page_number }}"><span
+                                        aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                            {% endif %}
+                            <li class="active disabled">
+                                <a href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a>
+                            </li>
+                            {% if page_obj.has_next %}
+                                <li><a href="{% url 'applicants' %}?page={{ page_obj.next_page_number }}"><span
+                                        aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}

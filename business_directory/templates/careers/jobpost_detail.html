@@ -1,8 +1,8 @@
 {% extends CMS_TEMPLATE %}
 {% load static %}{% load i18n %}
+{% load url from future %}
 
 {% block title %}Careers{% endblock %}
-
 {% block content %}
 
 <div class="container">
@@ -22,11 +22,41 @@
         <p>Location: {{ jobpost.location }}</p>
         <p>Budget: {{ jobpost.budget_from }} - {{ jobpost.budget_to }}</p>
 
-        <input type="button" value="Apply"/>
+        {% if request.user.is_authenticated %}
+            {% if not request.user.company %}
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#applyModal" data-whatever="{{ jobpost.company.user.email }}">
+                    Apply job
+                </button>
+                <div id="alert_placeholder"></div>
+               <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">{{ jobpost.title }}</h4>
+                      </div>
+                      <div class="modal-body">
+                            <form action="" method="post" enctype="multipart/form-data" role="form" id="apply_form">
+                                {% csrf_token %}
+                                <ul class="errorlist nonfield">
+                                </ul>
+                                {{ form.as_p }}
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Apply</button>
+                                </div>
+                            </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
-
 </div>
 
 {% endblock content %}
