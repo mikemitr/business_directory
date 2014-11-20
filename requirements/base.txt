@@ -57,5 +57,7 @@ django-reversion==1.7
 django-authtools
 pysolr
 django-messages
+django-tagging
+djangocms_text_ckeditor
 
 #s-e git://github.com/Fantomas42/django-blog-zinnia.git@feature/django-1.7#egg=django-blog-zinnia

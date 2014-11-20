@@ -51,12 +51,6 @@ urlpatterns = patterns('',
         view=views.JobPostAppliedDetailView.as_view(),
         name='applicant'
     ),
-    # url(
-    #     regex=r'^apply/(?P<pk>[\w.@+-]+)/$',
-    #     view=views.JobPostAppliedDetailView.as_view(),
-    #     name='apply'
-    # ),
 
     url(r'^messages/', include('django_messages.urls')),
-
 )

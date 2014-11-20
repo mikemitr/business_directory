@@ -30,6 +30,7 @@ urlpatterns = patterns('',
 
     # Your stuff: custom urls go here
     url(r'^careers/', include("careers.urls", namespace="careers")),
+    url(r'^blog/', include('aldryn_blog.urls', namespace="aldryn_blog")),
 
     url(r'^', include('cms.urls')),
     url(r'^$',  # noqa

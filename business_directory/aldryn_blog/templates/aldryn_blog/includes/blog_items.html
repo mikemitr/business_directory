@@ -1,0 +1,25 @@
+{% load i18n cms_tags aldryn_blog_tags %}
+{% load url from future %}
+
+<ul class="blog-items">
+    {% for post in posts %}
+    <li>
+        <h3><a href="{{ post.get_absolute_url }}">{% render_model post "title" %}</a></h3>
+        {% block blog_meta %}
+        <p class="blog-meta">
+            <span class="blog-date">{{ post.publication_start|date }}</span>
+            <span class="blog-author">{% trans "by" %} {{ post.author|user_name }}</span>
+        <p>
+            {% if post.tags %}
+            <span class="blog-tags">Tags: {{ post.tags }}</span>
+            {% endif %}
+        </p>
+        </p>
+        {% endblock %}
+        <div class="blog-lead">{% render_model post "lead_in" "lead_in" "" safe %}</div>
+        <p class="blog-more"><a href="{{ post.get_absolute_url }}">{% trans "read more" %}</a></p>
+    </li>
+    {% empty %}
+    <li class="blog-empty"><p>{% trans "No entry found." %}</p></li>
+    {% endfor %}
+</ul>

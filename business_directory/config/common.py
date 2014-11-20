@@ -45,6 +45,7 @@ class Common(Configuration):
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
 
+        'djangocms_text_ckeditor',
         'cms',  # django CMS itself
         'mptt',  # utilities for implementing a modified pre-order traversal tree
         'menus',  # helper for model independent hierarchical website navigation
@@ -55,6 +56,7 @@ class Common(Configuration):
         'haystack',
         'django_messages',
         'admin_notifications',
+        'tagging',
     )
 
     # Apps specific for this project go here.
@@ -63,6 +65,7 @@ class Common(Configuration):
         # Your stuff: custom apps go here
         'profiles',
         'careers',
+        'aldryn_blog',
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -88,7 +91,7 @@ class Common(Configuration):
 
     # MIGRATIONS CONFIGURATION
     MIGRATION_MODULES = {
-        'sites': 'contrib.sites.migrations'
+        'sites': 'contrib.sites.migrations',
     }
     # END MIGRATIONS CONFIGURATION
 
