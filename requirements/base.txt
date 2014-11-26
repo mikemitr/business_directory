@@ -59,5 +59,12 @@ pysolr
 django-messages
 django-tagging
 djangocms_text_ckeditor
+django-haystack
+
+# aldryn-blog
+django-hvad
+django_select2
+unidecode
+aldryn_common
 
 #s-e git://github.com/Fantomas42/django-blog-zinnia.git@feature/django-1.7#egg=django-blog-zinnia
